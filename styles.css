@@ -1,0 +1,73 @@
+* { box-sizing: border-box; }
+html, body {
+  height: 100%;
+  margin: 0;
+}
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  overflow: hidden;
+}
+
+.map-wrapper {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background: #140000;
+}
+
+#map {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2000px;   /* your image’s actual width */
+  height: 900px;  /* your image’s actual height */
+  background-image: url("Map.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: center center;
+  user-select: none;        /* disable selection */
+  -webkit-user-drag: none;  /* disable dragging */
+}
+
+/* ✅ Watermark overlay (tiled across entire map) */
+#map::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* don't block interactions */
+  background-image: repeating-linear-gradient(
+    -30deg,
+    rgba(255, 0, 0, 0.10) 0,
+    rgba(255, 0, 0, 0.10) 1px,
+    transparent 1px,
+    transparent 150px
+  ),
+  repeating-linear-gradient(
+    -30deg,
+    transparent 0,
+    transparent 120px,
+    rgba(255, 0, 0, 0.10) 120px,
+    rgba(255, 0, 0, 0.10) 121px
+  );
+  background-size: 300px 200px;
+}
+
+/* ✅ Optional: Add watermark text inside each tile */
+#map::before {
+  content: "This map is created for the Project Saklaw";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 40px;
+  font-weight: bold;
+  color: rgba(255, 0, 0, 0.08);
+  transform: translate(-50%, -50%) rotate(-30deg);
+  white-space: nowrap;
+  pointer-events: none;
+}
