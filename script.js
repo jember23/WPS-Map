@@ -12,7 +12,7 @@ let initialScale = 1;
 
 // Zoom limits
 const MIN_ZOOM = 1;
-const MAX_ZOOM = 6;
+const MAX_ZOOM = 2.5;
 
 // Get original map size from CSS (must match styles.css)
 const MAP_WIDTH = 2000;  // replace with your actual image width
